@@ -5,16 +5,26 @@
 
     <%- include('./partials/nav.ejs') %>
     <main>
-        <h1>Available Books</h1>
-        <div class="book-list">
-            <!-- Sample book item -->
-            <div class="book">
-                <h2>Book Title 1 BookTitl</h2>
-                <p>Author: John Doe</p>
-                <p>Genre: </p>
-            </div>
-            <!-- Add more books dynamically -->
-        </div>
+        <% if (books.length > 0 ) { %>
+
+            <h1>Available Books</h1>
+            <div class="book-list">
+                <!-- Sample book item -->
+                 <% books.forEach((book)=> { %>
+                    <div class="book">
+                        <h2><%= book.title %></h2>
+                        <p>Author: <%= book.author %></p>
+                        <p>Genre: <%= book.genre %> </p>
+                    </div>
+                 <% }) %>
+
+                <!-- Add more books dynamically -->
+            </div> 
+        
+       <% }  else { %> 
+            <h1>No Books Available At The Moment</h1>
+        <% } %>
+
     </main>
 
     <%- include('./partials/footer.ejs') %>
