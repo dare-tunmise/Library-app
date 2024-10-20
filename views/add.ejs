@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <main>
+        <h1>Add a New Book</h1>
+        <form>
+            <label for="title">Book Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+
+            <button type="submit">Add Book</button>
+        </form>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>
