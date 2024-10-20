@@ -17,6 +17,10 @@ app.get('/about', (req, res)=> {
     res.render('about', { title: 'About Library App'})
 });
 
+app.get('/about-us', (req, res)=> {
+    res.redirect('/about')
+});
+
 app.get('/books/add', (req, res)=> {
     res.render('add', {title: 'Add a book'});
 });
