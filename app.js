@@ -1,10 +1,19 @@
 const express = require('express');
-
+const mongoose = require('mongoose');
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+const dbURI = 'mongodb+srv://daretunmise:daretunmise@nodetuts.gabgh.mongodb.net/library-projects?retryWrites=true&w=majority&appName=nodetuts';
+
+mongoose.connect(dbURI)
+    .then((result)=>{
+        console.log('connected to database')
+    })
+    .catch((err)=> {
+        console.log(err);
+    })
 app.listen(4000, ()=> {
     console.log('app listening at port 4000');
 });
