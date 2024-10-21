@@ -2,11 +2,9 @@
 <html lang="en">
 <%- include('./partials/head.ejs') %>
 <body>
-
     <%- include('./partials/nav.ejs') %>
     <main>
         <% if (books.length > 0 ) { %>
-
             <h1>Available Books</h1>
             <div class="book-list">
                 <!-- Sample book item -->
@@ -20,7 +18,6 @@
 
                 <!-- Add more books dynamically -->
             </div> 
-        
        <% }  else { %> 
             <h1>No Books Available At The Moment</h1>
         <% } %>
