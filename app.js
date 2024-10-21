@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const dbURI = process.env.dbURI;
 const Book = require('./models/book')
 const app = express();
 
-const dbURI = 'mongodb+srv://daretunmise:daretunmise@nodetuts.gabgh.mongodb.net/library-projects?retryWrites=true&w=majority&appName=nodetuts';
+// const dbURI = 'mongodb+srv://daretunmise:daretunmise@nodetuts.gabgh.mongodb.net/library-projects?retryWrites=true&w=majority&appName=nodetuts';
 mongoose.connect(dbURI)
     .then((result)=>{
         app.listen(4000, ()=> {
