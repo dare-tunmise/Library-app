@@ -16,6 +16,7 @@ mongoose.connect(dbURI)
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true}));
 
 //mongoose and mongo sandbox routes
 
@@ -62,9 +63,25 @@ app.get('/', (req, res)=>{
 });
 
 app.get('/books', (req, res)=>{
-    Book.find()
+    Book.find().sort({ createdAt: -1})
         .then((result)=>{
             res.render('index', {title: 'All Books', books: result});
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+});
+
+app.post('/books', (req, res)=> {
+    console.log(req.body);
+    const book = new Book(req.body)
+
+    book.save()
+        .then((result)=> {
+            res.redirect('/books')
+        })
+        .catch((err)=> {
+            console.log(err)
         })
 })
 
