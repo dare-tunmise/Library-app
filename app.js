@@ -21,9 +21,9 @@ app.use(express.static('public'));
 
 app.get('/add-book', (req, res)=> {
     const book = new Book({
-        title: 'A failed Attempt At Undoing Memories',
-        author: 'Dare Tunmise',
-        genre: 'Poetry'
+        title: 'What the twilight says',
+        author: 'Derek Walcott',
+        genre: 'Non-Fiction'
     });
 
     book.save()
@@ -35,28 +35,38 @@ app.get('/add-book', (req, res)=> {
         })
 })
 
+app.get('/all-books', (req, res)=>{
+    Book.find()
+        .then((result)=>{
+            res.send(result);
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+})
+
+app.get('/single-book', (req, res)=>{
+    Book.findById('671595be3ab3d076a2fa586c')
+        .then((result)=>{
+            res.send(result);
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+})
+
 
 app.get('/', (req, res)=>{
 
-    const books = [
-        {
-            title: 'Native Son',
-            author: 'Richard Wright',
-            genre: 'Fiction'
-        },
-        {
-            title: 'Delights & Shadows',
-            author: 'Ted Kooser',
-            genre: 'Poetry'
-        },
-        {
-            title: 'My Ear at his Heart',
-            author: 'Hanif Kureishi',
-            genre: 'Non-Fiction'
-        },
-    ]
-    res.render("index", { title: 'Homepage', books});
+    res.redirect('/books');
 });
+
+app.get('/books', (req, res)=>{
+    Book.find()
+        .then((result)=>{
+            res.render('index', {title: 'All Books', books: result});
+        })
+})
 
 app.get('/about', (req, res)=> {
     res.render('about', { title: 'About Library App'})
