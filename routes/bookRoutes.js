@@ -27,6 +27,10 @@ Router.post('/books', (req, res)=> {
         })
 })
 
+Router.get('/books/add', (req, res)=> {
+    res.render('add', {title: 'Add a book'});
+});
+
 Router.get('/books/:id', (req, res)=> {
 
     const id = req.params.id;
@@ -39,8 +43,6 @@ Router.get('/books/:id', (req, res)=> {
         })
 })
 
-Router.get('/books/add', (req, res)=> {
-    res.render('add', {title: 'Add a book'});
-});
+
 
 module.exports = Router;

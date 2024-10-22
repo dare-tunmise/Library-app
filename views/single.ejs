@@ -8,6 +8,11 @@
             <h1><%= book.title %></h1>
             <p><strong>Author:</strong><%= book.author %></p>
             <p><strong>Genre:</strong> <%= book.genre %></p>
+            <p><strong>Publication Year:<%= book.year %></strong></p>
+            <p><strong>Description:</strong> <%= book.description %></p>
+
+            <button class="edit">Edit Book</button>
+            <button class="edit">Delete Book</button>
         </div>
     </main>
     <%- include('./partials/footer.ejs') %>
