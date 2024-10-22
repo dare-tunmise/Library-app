@@ -2,8 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const dbURI = process.env.dbURI;
-const Book = require('./models/book')
+const Book = require('./models/book');
 const app = express();
+const bookRoutes = require('./routes/bookRoutes')
 
 mongoose.connect(dbURI)
     .then((result)=>{
@@ -59,32 +60,11 @@ app.get('/single-book', (req, res)=>{
 
 
 app.get('/', (req, res)=>{
-
     res.redirect('/books');
 });
 
-app.get('/books', (req, res)=>{
-    Book.find().sort({ createdAt: -1})
-        .then((result)=>{
-            res.render('index', {title: 'All Books', books: result});
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-});
 
-app.post('/books', (req, res)=> {
-    console.log(req.body);
-    const book = new Book(req.body)
-
-    book.save()
-        .then((result)=> {
-            res.redirect('/books')
-        })
-        .catch((err)=> {
-            console.log(err)
-        })
-})
+app.use(bookRoutes);
 
 app.get('/about', (req, res)=> {
     res.render('about', { title: 'About Library App'})
@@ -94,9 +74,7 @@ app.get('/about-us', (req, res)=> {
     res.redirect('/about')
 });
 
-app.get('/books/add', (req, res)=> {
-    res.render('add', {title: 'Add a book'});
-});
+
 
 app.use((req, res)=>{
     res.status(404).render('404', { title: 'Page not found'});
