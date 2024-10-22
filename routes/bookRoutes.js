@@ -27,6 +27,18 @@ Router.post('/books', (req, res)=> {
         })
 })
 
+Router.get('/books/:id', (req, res)=> {
+
+    const id = req.params.id;
+    Book.findById(id)
+        .then((result)=> {
+            res.render('single', {book: result, title: "book detail"});
+        })
+        .catch((err)=> {
+            console.log(err)
+        })
+})
+
 Router.get('/books/add', (req, res)=> {
     res.render('add', {title: 'Add a book'});
 });

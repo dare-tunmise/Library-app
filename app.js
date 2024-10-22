@@ -58,6 +58,10 @@ app.get('/single-book', (req, res)=>{
         })
 })
 
+app.get('/single', (req, res)=> {
+    res.render('single', { title: 'book detail'});
+})
+
 
 app.get('/', (req, res)=>{
     res.redirect('/books');

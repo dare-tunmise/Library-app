@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <main>
+        <div class="book-detail">
+            <h1><%= book.title %></h1>
+            <p><strong>Author:</strong><%= book.author %></p>
+            <p><strong>Genre:</strong> <%= book.genre %></p>
+        </div>
+    </main>
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

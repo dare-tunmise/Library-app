@@ -9,11 +9,13 @@
             <div class="book-list">
                 <!-- Sample book item -->
                  <% books.forEach((book)=> { %>
-                    <div class="book">
-                        <h2><%= book.title %></h2>
-                        <p>Author: <%= book.author %></p>
-                        <p>Genre: <%= book.genre %> </p>
-                    </div>
+                    <a href="books/<%= book._id %>" style="text-decoration: none; color: inherit;">
+                        <div class="book">
+                            <h2><%= book.title %></h2>
+                            <p>Author: <%= book.author %></p>
+                            <p>Genre: <%= book.genre %> </p>
+                        </div>
+                    </a>
                  <% }) %>
 
                 <!-- Add more books dynamically -->
