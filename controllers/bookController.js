@@ -10,6 +10,15 @@ const getBooks = (req, res)=> {
             console.log(err);
         })
 }
+// const getBooks = async (req, res) => {
+//     try {
+//         const books = await Book.find().sort({ createdAt: -1 });
+//         res.render('index', { title: 'All Books', books });
+//     } catch (err) {
+//         console.error(err);
+//     }
+// };
+
 
 const postBook = (req, res)=> {
     console.log(req.body);
@@ -28,16 +37,15 @@ const addBook = (req, res)=> {
     res.render('add', {title: 'Add a book'});
 }
 
-const getBook = (req, res)=> {
+const getBook = async (req, res)=> {
 
-    const id = req.params.id;
-    Book.findById(id)
-        .then((result)=> {
-            res.render('single', {book: result, title: "book detail"});
-        })
-        .catch((err)=> {
-            console.log(err)
-        })
+    try {
+        const id = req.params.id;
+        const book = await Book.findById(id)
+        res.render('single', {book, title: "book detail"});
+    }  catch(err){
+        console.log(err)
+    }
 }
 
 
