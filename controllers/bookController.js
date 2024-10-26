@@ -28,8 +28,22 @@ const addBook = (req, res)=> {
     res.render('add', {title: 'Add a book'});
 }
 
+const getBook = (req, res)=> {
+
+    const id = req.params.id;
+    Book.findById(id)
+        .then((result)=> {
+            res.render('single', {book: result, title: "book detail"});
+        })
+        .catch((err)=> {
+            console.log(err)
+        })
+}
+
 
 module.exports = {
     getBooks,
     postBook,
+    addBook,
+    getBook
 }
