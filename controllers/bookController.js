@@ -10,6 +10,7 @@ const getBooks = (req, res)=> {
             console.log(err);
         })
 }
+
 // const getBooks = async (req, res) => {
 //     try {
 //         const books = await Book.find().sort({ createdAt: -1 });
