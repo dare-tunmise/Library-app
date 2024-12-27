@@ -62,7 +62,15 @@ app.get('/single-book', (req, res)=>{
         })
 })
 
-
+app.get('/single-book-pages', (req, res)=>{
+    Book.findById('671595be3ab3d076a2fa586c')
+        .then((result)=>{
+            res.send(result);
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+})
 
 app.get('/single', (req, res)=> {
     res.render('single', { title: 'book detail'});
